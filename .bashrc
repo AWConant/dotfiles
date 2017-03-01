@@ -33,6 +33,11 @@ alias cd21='cd ~/gcs21-s17'
 alias grep='grep --color=always'
 alias up3='cd ../../..'
 # ---------------------------------------------------------------
+# CL Aliases
+
+alias test_all='cd modes && aq-morftest -csi ../ryu.yaml | most && cd ..'
+
+# ---------------------------------------------------------------
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
