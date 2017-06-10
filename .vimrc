@@ -1,17 +1,17 @@
 """""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'scrooloose/nerdcommenter'
-"Plugin 'scrooloose/syntastic'
-
-call vundle#end()
-filetype plugin indent on
+"set nocompatible
+"filetype off
+"
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"
+"Plugin 'VundleVim/Vundle.vim'
+"
+"Plugin 'scrooloose/nerdcommenter'
+""Plugin 'scrooloose/syntastic'
+"
+"call vundle#end()
+"filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -68,7 +68,7 @@ autocmd BufNewFile,BufRead *.glsl set syntax=cpp
 autocmd FileType c set formatoptions+=ro
 
 " for python
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
 
 " for OCaml
 autocmd FileType ocaml setlocal expandtab shiftwidth=2 
@@ -106,40 +106,12 @@ command Q q
 " map jk to esc
 imap jk <Esc>
 
-" copy to buffer
-" NOT SURE IF NECESSARY. MIGHT BE OBSOLETED BY 'set clipboard=unnamed'
-vmap <C-c> :w! ~/.vimbuffer<CR>
-nmap <C-c> :.w! ~/.vimbuffer<CR>
-" paste from buffer
-map <C-p> :r ~/.vimbuffer<CR>
-
 " column at 80 chars
 set colorcolumn=80
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
 " copy paste between windows
-set clipboard=unnamed
+set clipboard=unnamedplus
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-
-function! WrapForTmux(s)
-  if !exists('$TMUX')
-    return a:s
-  endif
-
-  let tmux_start = "\<Esc>Ptmux;"
-  let tmux_end = "\<Esc>\\"
-
-  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
-endfunction
-
-let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+" preferred colorscheme
+colorscheme evening

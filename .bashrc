@@ -1,13 +1,19 @@
 PS1='\h[\W]λ '
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 PS2='more> '
 
 export HISTSIZE=500
 export HISTFILESIZE=500
 export BROWSER=firefox
-export PYTHONSTARTUP=${HOME}/.pythonrc
 export WORKON_HOME=/scratch/aconant1/Envs
 export LESS=eFRX
+export DISPLAY=localhost:0.0
 
+# ---------------------------------------------------------------
+function template {
+    cp ~/template.py $1.py
+    touch in/$1.in
+}
 # ---------------------------------------------------------------
 alias back='cd $OLDPWD'
 alias ls='ls -CF'
@@ -29,14 +35,7 @@ alias xlock='/usr/local/bin/xlock -remote -mode dclock -mono -nice 10'
 alias blindness='~/blindness/blindness.py'
 alias tm='tmux'
 alias xop='xdg-open'
-alias cd21='cd ~/gcs21-s17'
 alias grep='grep --color=always'
-alias up3='cd ../../..'
-# ---------------------------------------------------------------
-# CL Aliases
-
-alias test_all='cd modes && aq-morftest -csi ../ryu.yaml | most && cd ..'
-
 # ---------------------------------------------------------------
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
